@@ -12,7 +12,6 @@ $btn_value = "Save Post";
 
 // Delete Method
 if (isset($_GET['delete']) && !empty($_GET['delete'])){
-
     $query = "DELETE FROM posts WHERE id=" .$_GET['delete'];
     $delete = $db->delete($query);
     if ($delete){
