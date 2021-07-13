@@ -84,6 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
 
 
 $students = $db->select("SELECT *, (english + hindi + math + science + sscience + physical) AS total FROM students");
+$products = $db->select("SELECT  * FROM products Limit 3");
 ?>
 
 <!DOCTYPE html>
@@ -170,6 +171,27 @@ $students = $db->select("SELECT *, (english + hindi + math + science + sscience 
                         <td><a href="?edit=<?php echo $student['id']; ?>" class="btn btn-warning">Edit</a></td>
                     </tr>
                 <?php } ?>
+            </table>
+            <table class="table table-hover table-bordered mt-3">
+                <tr>
+                    <th>Id</th>
+                    <th>Product Name</th>
+                    <th>Unit</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+                <?php foreach ($products as $product){ ?>
+                    <tr>
+                        <td><?php echo $product['id'] ?></td>
+                        <td><?php echo $product['productName'] ?></td>
+                        <td><?php echo $product['unit'] ?></td>
+                        <td><?php echo $product['price'] ?></td>
+                        <td>
+                            <a href="?edit=<?php echo $product['id']; ?>" class="btn btn-warning">Edit</a>
+                            <a href="?delete=<?php echo $product['id']; ?>" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                <?php  } ?>
             </table>
         </div>
     </div>
